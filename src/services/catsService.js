@@ -6,3 +6,9 @@ export async function getDailyCat() {
   if (response.ok) return response.json();
   throw response;
 }
+
+export async function getCatBreeds() {
+  const response = await fetch(baseUrl + 'breeds', { headers });
+  if (response.ok) return response.json();
+  throw response;
+}
