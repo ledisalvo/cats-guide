@@ -30,6 +30,8 @@
 }
 
 .card-photo-size {
+  padding-top: 20px;
+  margin: 0 auto;
   height: 250px;
   width: 300px;
 }

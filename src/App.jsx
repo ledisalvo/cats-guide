@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getDailyCat, getCatBreeds } from './services/catsService';
+import catProfile from './content/images/cat-profile.png';
 
 function CatOfTheDay() {
   const [cat, setCat] = useState([]);
@@ -11,7 +12,7 @@ function CatOfTheDay() {
 
   return (
     <>
-      <h1>Welcome</h1>
+      <h1>Welcome to Cat's catalog breeds</h1>
       <p>This is the Cat of the day...</p>
       {cat.length > 0 ? (
         <img src={cat[0].url} className='App-logo' alt={cat[0].id} />
@@ -32,7 +33,9 @@ function CatBreedsList() {
     <>
       <div className='container'>
         {catBreeds.length > 0 ? (
-          <div className='row'>{catBreeds.map(CatBreedCard)} </div>
+          <div className='row row-cols-1 row-cols-md-3 g-4'>
+            {catBreeds.map(CatBreedCard)}{' '}
+          </div>
         ) : (
           <p>ERROR</p>
         )}
@@ -43,23 +46,29 @@ function CatBreedsList() {
 
 function CatBreedCard(catBreedInfo) {
   return (
-    <div key={catBreedInfo.id} className='col-md-4'>
-      <div className='card-deck'>
-        <div className='card'>
+    <div class='col'>
+      <div class='card'>
+        {typeof catBreedInfo.image !== 'undefined' ? (
           <img
             className='card-img-top card-photo-size'
-            src={catBreedInfo.image?.url}
+            src={catBreedInfo.image.url}
             alt={catBreedInfo.description}
           />
-          <div className='card-body'>
-            <h5 className='card-title'>{catBreedInfo.name}</h5>
-            <p className='card-text'>{catBreedInfo.description}</p>
-            <p className='card-text'>
-              <small className='text-muted'>
-                <a href={catBreedInfo?.wikipedia_url}>View more info here</a>
-              </small>
-            </p>
-          </div>
+        ) : (
+          <img
+            className='card-img-top card-photo-size'
+            src={catProfile}
+            alt='error'
+          />
+        )}
+        <div class='card-body'>
+          <h5 class='card-title'>{catBreedInfo.name}</h5>
+          <p class='card-text'>{catBreedInfo.description}</p>
+          <p className='card-text'>
+            <small className='text-muted'>
+              <a href={catBreedInfo?.wikipedia_url}>View more info here</a>
+            </small>
+          </p>
         </div>
       </div>
     </div>
