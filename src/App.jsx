@@ -23,32 +23,26 @@ function CatOfTheDay() {
   );
 }
 
-function CatBreedsList() {
-  const [catBreeds, setCatBreeds] = useState([]);
-
-  useEffect(() => {
-    getCatBreeds().then((response) => setCatBreeds(response));
-  }, []);
+function CatBreedsList({ filteredCatBreeds }) {
   return (
     <>
-      <div className='container'>
-        {catBreeds.length > 0 ? (
-          <div className='row row-cols-1 row-cols-md-3 g-4'>
-            {catBreeds.map(CatBreedCard)}{' '}
-          </div>
-        ) : (
-          <p>ERROR</p>
-        )}
-      </div>
+      {filteredCatBreeds.length > 0 ? (
+        <div className='row row-cols-1 row-cols-md-3 g-4'>
+          {filteredCatBreeds.map(CatBreedCard)}{' '}
+        </div>
+      ) : (
+        <p>ERROR</p>
+      )}
     </>
   );
 }
 
 function CatBreedCard(catBreedInfo) {
   return (
-    <div class='col'>
-      <div class='card'>
-        {typeof catBreedInfo.image !== 'undefined' ? (
+    <div className='col' key={catBreedInfo.id}>
+      <div className='card'>
+        {typeof catBreedInfo.image !== 'undefined' &&
+        Object.entries(catBreedInfo.image).length !== 0 ? (
           <img
             className='card-img-top card-photo-size'
             src={catBreedInfo.image.url}
@@ -61,9 +55,9 @@ function CatBreedCard(catBreedInfo) {
             alt='error'
           />
         )}
-        <div class='card-body'>
-          <h5 class='card-title'>{catBreedInfo.name}</h5>
-          <p class='card-text'>{catBreedInfo.description}</p>
+        <div className='card-body'>
+          <h5 className='card-title'>{catBreedInfo.name}</h5>
+          <p className='card-text'>{catBreedInfo.description}</p>
           <p className='card-text'>
             <small className='text-muted'>
               <a href={catBreedInfo?.wikipedia_url}>View more info here</a>
@@ -75,14 +69,49 @@ function CatBreedCard(catBreedInfo) {
   );
 }
 
+function FilterCatsByName(props) {
+  return (
+    <div className='input-group mb-3 mt-4'>
+      <input
+        type='text'
+        className='form-control'
+        placeholder='Search a breed or leave empty to view all'
+        aria-label='Username'
+        aria-describedby='basic-addon1'
+        onChange={(event) => props.onChange(event.target.value)}
+      />
+    </div>
+  );
+}
+
 export default function App() {
+  const [catBreeds, setCatBreeds] = useState([]);
+  const [nameBreed, setNameBreed] = useState('');
+
+  useEffect(() => {
+    getCatBreeds().then((response) => setCatBreeds(response));
+  }, []);
+
+  function handleNameFilter(breedName) {
+    setNameBreed(breedName);
+  }
+
+  const filteredCatBreeds = nameBreed
+    ? catBreeds.filter(() => catBreeds.find((n) => n.name === nameBreed))
+    : catBreeds;
+
+  debugger;
+
   return (
     <div className='App'>
       <header className='App-header'>
         <CatOfTheDay />
       </header>
       <section>
-        <CatBreedsList />
+        <div className='container'>
+          <FilterCatsByName onChange={handleNameFilter} />
+          <CatBreedsList filteredCatBreeds={filteredCatBreeds} />
+        </div>
       </section>
     </div>
   );
