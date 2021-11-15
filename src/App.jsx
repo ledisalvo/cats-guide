@@ -97,7 +97,7 @@ export default function App() {
   }
 
   const filteredCatBreeds = nameBreed
-    ? catBreeds.filter(() => catBreeds.find((n) => n.name === nameBreed))
+    ? catBreeds.filter((c) => c.name.toLowerCase().includes(nameBreed))
     : catBreeds;
 
   debugger;
