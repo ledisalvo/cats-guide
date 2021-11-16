@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { getDailyCat, getCatBreeds } from './services/catsService';
 import catProfile from './content/images/cat-profile.png';
+import Spinner from './Spinner';
+import useFetch from './services/useFetch';
 
 function CatOfTheDay() {
-  const [cat, setCat] = useState([]);
+  const { data: cat, error } = useFetch('images/search');
 
-  useEffect(() => {
-    getDailyCat().then((response) => setCat(response));
-  }, []);
-
+  if (error) throw error;
   return (
     <>
       <h1>Welcome to Cat's catalog breeds</h1>
       <p>This is the Cat of the day...</p>
-      {cat.length > 0 ? (
+      {cat && cat.length > 0 ? (
         <img src={cat[0].url} className='App-logo' alt={cat[0].id} />
       ) : (
-        <h3> Wait for it...</h3>
+        <span>
+          <h3> Wait for it...</h3>
+          <Spinner />
+        </span>
       )}
     </>
   );
@@ -26,7 +27,7 @@ function CatOfTheDay() {
 function CatBreedsList({ filteredCatBreeds }) {
   return (
     <>
-      {filteredCatBreeds.length > 0 ? (
+      {filteredCatBreeds && filteredCatBreeds.length > 0 ? (
         <div className='row row-cols-1 row-cols-md-3 g-4'>
           {filteredCatBreeds.map(CatBreedCard)}{' '}
         </div>
@@ -85,12 +86,10 @@ function FilterCatsByName(props) {
 }
 
 export default function App() {
-  const [catBreeds, setCatBreeds] = useState([]);
+  //const [catBreeds, setCatBreeds] = useState([]);
   const [nameBreed, setNameBreed] = useState('');
 
-  useEffect(() => {
-    getCatBreeds().then((response) => setCatBreeds(response));
-  }, []);
+  const { data: catBreeds, error } = useFetch('breeds');
 
   function handleNameFilter(breedName) {
     setNameBreed(breedName);
@@ -100,8 +99,7 @@ export default function App() {
     ? catBreeds.filter((c) => c.name.toLowerCase().includes(nameBreed))
     : catBreeds;
 
-  debugger;
-
+  if (error) throw error;
   return (
     <div className='App'>
       <header className='App-header'>
@@ -110,6 +108,7 @@ export default function App() {
       <section>
         <div className='container'>
           <FilterCatsByName onChange={handleNameFilter} />
+          {filteredCatBreeds && <h2>Found {filteredCatBreeds.length} cats</h2>}
           <CatBreedsList filteredCatBreeds={filteredCatBreeds} />
         </div>
       </section>
