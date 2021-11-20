@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import catProfile from './content/images/cat-profile.png';
+import PageNotFound from './PageNotFound';
 import useFetch from './services/useFetch';
 
 function CatBreedsList({ filteredCatBreeds }) {
@@ -11,7 +12,7 @@ function CatBreedsList({ filteredCatBreeds }) {
           {filteredCatBreeds.map(CatBreedCard)}{' '}
         </div>
       ) : (
-        <p>ERROR</p>
+        <p>This search throw 0 results</p>
       )}
     </>
   );
@@ -78,6 +79,7 @@ export default function CatBreeds() {
     : catBreeds;
 
   if (error) throw error;
+  if (catBreeds && catBreeds.length === 0) return <PageNotFound />;
   return (
     <div className='container'>
       <FilterCatsByName onChange={handleNameFilter} />

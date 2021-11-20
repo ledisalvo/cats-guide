@@ -7,6 +7,7 @@ export default function useFetch(url) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     async function init() {
@@ -15,6 +16,8 @@ export default function useFetch(url) {
         if (response.ok) {
           const json = await response.json();
           setData(json);
+        } else if (response.status === 404) {
+          setNotFound(true);
         } else {
           throw response;
         }
@@ -27,5 +30,5 @@ export default function useFetch(url) {
     init();
   }, [url]);
 
-  return { data, error, loading };
+  return { data, error, loading, notFound };
 }

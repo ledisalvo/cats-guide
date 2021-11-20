@@ -3,11 +3,13 @@ import './Welcome.css';
 import Spinner from './Spinner';
 import useFetch from './services/useFetch';
 import { Link } from 'react-router-dom';
+import PageNotFound from './PageNotFound';
 
 export default function Welcome() {
-  const { data: cat, error } = useFetch('images/search');
+  const { data: cat, error, notFound } = useFetch('images/search');
 
   if (error) throw error;
+  if (notFound) return <PageNotFound />;
   return (
     <div className='Welcome'>
       <h1>Welcome to Cat's catalog breeds</h1>
