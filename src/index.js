@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Welcome from './Welcome';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ErrorBoundary from './ErrorBoundary';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Welcome />} />
+          <Route path='/App/*' element={<App />} />
+        </Routes>
+      </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
