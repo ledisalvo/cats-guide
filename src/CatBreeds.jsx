@@ -3,6 +3,7 @@ import './App.css';
 import catProfile from './content/images/cat-profile.png';
 import PageNotFound from './PageNotFound';
 import useFetch from './services/useFetch';
+import { Link } from 'react-router-dom';
 
 function CatBreedsList({ filteredCatBreeds }) {
   return (
@@ -41,7 +42,9 @@ function CatBreedCard(catBreedInfo) {
           <p className='card-text'>{catBreedInfo.description}</p>
           <p className='card-text'>
             <small className='text-muted'>
-              <a href={catBreedInfo?.wikipedia_url}>View more info here</a>
+              <Link to={`detail/${catBreedInfo.name}`}>
+                View more info here
+              </Link>
             </small>
           </p>
         </div>

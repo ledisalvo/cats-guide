@@ -16,7 +16,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path='/' element={<CatBreeds />} />
-          <Route path='/:name' element={<DetailsBreed />} />
+          <Route path='/detail/:name' element={<DetailsBreed />} />
           <Route path='/apidoc' element={<ApiDocumentation />} />
         </Routes>
       </main>

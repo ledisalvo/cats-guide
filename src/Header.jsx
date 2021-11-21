@@ -33,7 +33,7 @@ export default function Header() {
             </NavLink>
           </li>
           <li className='nav-item vertical-centered-li'>
-            <NavLink style={activeLinks} to='App/apidoc'>
+            <NavLink style={activeLinks} to='apidoc'>
               Api Documentation
             </NavLink>
           </li>
