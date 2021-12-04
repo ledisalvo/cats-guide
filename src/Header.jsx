@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const activeLinks = ({ isActive }) =>
@@ -11,6 +11,8 @@ const activeLinks = ({ isActive }) =>
     : { color: '#545e6f', background: '#f0f0f0' };
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <div className='container'>
       <header className='d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom'>
@@ -33,9 +35,26 @@ export default function Header() {
             </NavLink>
           </li>
           <li className='nav-item vertical-centered-li'>
-            <NavLink style={activeLinks} to='App/apidoc'>
+            <NavLink style={activeLinks} to='apidoc'>
               Api Documentation
             </NavLink>
+          </li>
+          <li className='nav-item vertical-centered-li'>
+            <NavLink style={activeLinks} to='donation'>
+              Make a donation
+            </NavLink>
+          </li>
+          <li className='nav-item vertical-centered-li'>
+            <button
+              type='button'
+              class='btn btn-outline-primary position-relative'
+              onClick={() => navigate('cart')}
+            >
+              <i class='bi bi-cart'></i>
+              <span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'>
+                1<span class='visually-hidden'>unread messages</span>
+              </span>
+            </button>
           </li>
         </ul>
       </header>
