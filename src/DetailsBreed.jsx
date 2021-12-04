@@ -40,10 +40,12 @@ export default function DetailsBreed() {
     notFound,
   } = useFetch('breeds/search?q=' + name);
 
+  if (loading) return <Spinner />;
+  if (breedDetail.length === 0) return <PageNotFound />;
   if (error) throw error;
+
   if (notFound) return <PageNotFound />;
 
-  console.log(breedDetail);
   return (
     <>
       {breedDetail && breedDetail.length > 0 ? (

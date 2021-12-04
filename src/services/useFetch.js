@@ -24,6 +24,7 @@ export default function useFetch(url) {
       } catch (error) {
         setError(error);
       } finally {
+        console.log('paso por acá');
         setLoading(false);
       }
     }
