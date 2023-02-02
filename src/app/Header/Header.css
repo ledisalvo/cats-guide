@@ -1,0 +1,16 @@
+.vertical-centered-li {
+  padding-top: 0.5em;
+}
+
+.vertical-centered-li a {
+  padding-right: 1em;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 45px;
+}
+
+.link {
+  font-family: 'Tajawal', sans-serif;
+}

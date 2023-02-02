@@ -2,13 +2,6 @@
   color: #61dafb;
 }
 
-.card-photo-size {
-  padding-top: 20px;
-  margin: 0 auto;
-  height: 250px;
-  width: 300px;
-}
-
 @keyframes App-logo-spin {
   0% {
     transform: rotate(0deg);
