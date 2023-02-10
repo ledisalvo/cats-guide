@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './LandingPage.css';
 import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
-import PageNotFound from '../PageNotFound/PageNotFound';
 import { getRandomImage } from '../api/catBreedsActions';
 import { useDispatch, useSelector } from 'react-redux';
 

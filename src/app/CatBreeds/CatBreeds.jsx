@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './CatBreed.css';
 
 import PageNotFound from '../PageNotFound/PageNotFound';
 import FilterCatsByName from './FIlterCatsByName';
 import CatBreedsList from './CatBreedsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatsBreeds } from '../api/catBreedsActions';
-import { closeModal, openModal } from '../common/modals/modalReducer';
 import LoadingModal from '../common/modals/Loading/LoadingModal';
-import CatBreedCardPlaceholder from './CatBreedsCard/CatBreedCardPlaceholder';
 
 export default function CatBreeds() {
   const dispatch = useDispatch();
