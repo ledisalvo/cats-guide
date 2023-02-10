@@ -6,13 +6,15 @@ import FilterCatsByName from './FIlterCatsByName';
 import CatBreedsList from './CatBreedsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatsBreeds } from '../api/catBreedsActions';
-import useFetch from '../../services/useFetch';
-import Spinner from '../Spinner/Spinner';
+import { closeModal, openModal } from '../common/modals/modalReducer';
+import LoadingModal from '../common/modals/Loading/LoadingModal';
+import CatBreedCardPlaceholder from './CatBreedsCard/CatBreedCardPlaceholder';
 
 export default function CatBreeds() {
   const dispatch = useDispatch();
   const [nameBreed, setNameBreed] = useState('');
   const catBreeds = useSelector((state) => state.cats.catsBreeds);
+  const { loading, error } = useSelector((state) => state.async);
 
   useEffect(() => {
     dispatch(getCatsBreeds());
@@ -26,15 +28,9 @@ export default function CatBreeds() {
     ? catBreeds.filter((c) => c.name.toLowerCase().includes(nameBreed))
     : catBreeds;
 
-  //if (error) throw error;
-  if (catBreeds && catBreeds.length === 0) {
-    return (
-      <span>
-        <h3> Wait for it...</h3>
-        <Spinner />
-      </span>
-    );
-  }
+  if (error) return <PageNotFound />;
+  if (loading) return <LoadingModal />;
+
   return (
     <div className='container'>
       <FilterCatsByName onChange={handleNameFilter} />

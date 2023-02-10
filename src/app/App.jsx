@@ -7,10 +7,13 @@ import ApiDocumentation from './ApiDocumentation/ApiDocumentation';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import PageNotFound from './PageNotFound/PageNotFound';
+import ModalManager from './common/modals/ModalManager';
+import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   return (
     <div className='App'>
+      <ModalManager />
       <header className='App-header'>
         <Header />
       </header>

@@ -8,18 +8,20 @@ import { getBreedDetails } from '../api/catBreedsActions';
 import LabelInfoDescripcion from './LabelInfoDescription';
 import DetailAvatar from './DetailAvatar';
 import BreedCharacteristics from './BreedCharacteristics';
+import LoadingModal from '../common/modals/Loading/LoadingModal';
 
 export default function DetailsBreed() {
   const dispatch = useDispatch();
   const { name } = useParams();
   const breedDetail = useSelector((state) => state.cats.breedDetails);
-  const { loading } = useSelector((state) => state.async);
+  const { loading, error } = useSelector((state) => state.async);
 
   useEffect(() => {
     dispatch(getBreedDetails(name));
   }, []);
 
-  if (loading) return <Spinner />;
+  if (error) return <PageNotFound />;
+  if (loading) return <LoadingModal />;
 
   return (
     <>
@@ -85,97 +87,144 @@ export default function DetailsBreed() {
             <div className='col-8'>
               <h5 style={{ marginTop: '20px' }}>Characteristics</h5>
               <div className='sm-no-margin'>
-                <BreedCharacteristics
-                  title='Adaptability'
-                  value={breedDetail[0]?.adaptability}
-                />
-                <BreedCharacteristics
-                  title='Affection Level'
-                  value={breedDetail[0]?.affection_level}
-                />
-                <BreedCharacteristics
-                  title='Child Friendly'
-                  value={breedDetail[0]?.child_friendly}
-                />
-                <BreedCharacteristics
-                  title='Dog Friendly'
-                  value={breedDetail[0]?.dog_friendly}
-                />
-                <BreedCharacteristics
-                  title='Energy Level'
-                  value={breedDetail[0]?.energy_level}
-                />
-                <BreedCharacteristics
-                  title='Experimental'
-                  value={breedDetail[0]?.experimental}
-                />
-                <BreedCharacteristics
-                  title='Grooming'
-                  value={breedDetail[0]?.grooming}
-                />
-                <BreedCharacteristics
-                  title='Hairless'
-                  value={breedDetail[0]?.hairless}
-                />
-                <BreedCharacteristics
-                  title='Health Issues'
-                  value={breedDetail[0]?.health_issues}
-                />
-                <BreedCharacteristics
-                  title='Hypoallergenic'
-                  value={breedDetail[0]?.hypoallergenic}
-                />
-                <BreedCharacteristics
-                  title='Indoor'
-                  value={breedDetail[0]?.Indoor}
-                />
-                <BreedCharacteristics
-                  title='Intelligence'
-                  value={breedDetail[0]?.intelligence}
-                />
-                <BreedCharacteristics
-                  title='Natural'
-                  value={breedDetail[0]?.natural}
-                />
-                <BreedCharacteristics
-                  title='Rare'
-                  value={breedDetail[0]?.rare}
-                />
-                <BreedCharacteristics title='Rex' value={breedDetail[0]?.rex} />
-                <BreedCharacteristics
-                  title='Shedding Level'
-                  value={breedDetail[0]?.shedding_level}
-                />
-                <BreedCharacteristics
-                  title='Social Needs'
-                  value={breedDetail[0]?.social_needs}
-                />
-                <BreedCharacteristics
-                  title='Suppressed tail'
-                  value={breedDetail[0]?.suppressed_tail}
-                />
-                <BreedCharacteristics
-                  title='Stranger Friendly'
-                  value={breedDetail[0]?.stranger_friendly}
-                />
-                <BreedCharacteristics
-                  title='Vocalisation'
-                  value={breedDetail[0]?.vocalisation}
-                />
-                <BreedCharacteristics
-                  title='Suppressed Tail'
-                  value={breedDetail[0]?.suppressed_tail}
-                />
-                <BreedCharacteristics
-                  title='Short Legs'
-                  value={breedDetail[0]?.short_legs}
-                />
+                {breedDetail[0]?.adaptability && (
+                  <BreedCharacteristics
+                    title='Adaptability'
+                    value={breedDetail[0]?.adaptability}
+                  />
+                )}
+                {breedDetail[0]?.affection_level && (
+                  <BreedCharacteristics
+                    title='Affection Level'
+                    value={breedDetail[0]?.affection_level}
+                  />
+                )}
+                {breedDetail[0]?.child_friendly && (
+                  <BreedCharacteristics
+                    title='Child Friendly'
+                    value={breedDetail[0]?.child_friendly}
+                  />
+                )}
+                {breedDetail[0]?.dog_friendly && (
+                  <BreedCharacteristics
+                    title='Dog Friendly'
+                    value={breedDetail[0]?.dog_friendly}
+                  />
+                )}
+                {breedDetail[0]?.energy_level && (
+                  <BreedCharacteristics
+                    title='Energy Level'
+                    value={breedDetail[0]?.energy_level}
+                  />
+                )}
+                {breedDetail[0]?.experimental && (
+                  <BreedCharacteristics
+                    title='Experimental'
+                    value={breedDetail[0]?.experimental}
+                  />
+                )}
+                {breedDetail[0]?.grooming && (
+                  <BreedCharacteristics
+                    title='Grooming'
+                    value={breedDetail[0]?.grooming}
+                  />
+                )}
+                {breedDetail[0]?.hairless && (
+                  <BreedCharacteristics
+                    title='Hairless'
+                    value={breedDetail[0]?.hairless}
+                  />
+                )}
+                {breedDetail[0]?.health_issues && (
+                  <BreedCharacteristics
+                    title='Health Issues'
+                    value={breedDetail[0]?.health_issues}
+                  />
+                )}
+                {breedDetail[0]?.hypoallergenic && (
+                  <BreedCharacteristics
+                    title='Hypoallergenic'
+                    value={breedDetail[0]?.hypoallergenic}
+                  />
+                )}
+                {breedDetail[0]?.Indoor && (
+                  <BreedCharacteristics
+                    title='Indoor'
+                    value={breedDetail[0]?.Indoor}
+                  />
+                )}
+                {breedDetail[0]?.intelligence && (
+                  <BreedCharacteristics
+                    title='Intelligence'
+                    value={breedDetail[0]?.intelligence}
+                  />
+                )}
+                {breedDetail[0]?.natural && (
+                  <BreedCharacteristics
+                    title='Natural'
+                    value={breedDetail[0]?.natural}
+                  />
+                )}
+                {breedDetail[0]?.rare && (
+                  <BreedCharacteristics
+                    title='Rare'
+                    value={breedDetail[0]?.rare}
+                  />
+                )}
+                {breedDetail[0]?.rex && (
+                  <BreedCharacteristics
+                    title='Rex'
+                    value={breedDetail[0]?.rex}
+                  />
+                )}
+                {breedDetail[0]?.shedding_level && (
+                  <BreedCharacteristics
+                    title='Shedding Level'
+                    value={breedDetail[0]?.shedding_level}
+                  />
+                )}
+                {breedDetail[0]?.social_needs && (
+                  <BreedCharacteristics
+                    title='Social Needs'
+                    value={breedDetail[0]?.social_needs}
+                  />
+                )}
+                {breedDetail[0]?.suppressed_tail && (
+                  <BreedCharacteristics
+                    title='Suppressed tail'
+                    value={breedDetail[0]?.suppressed_tail}
+                  />
+                )}
+                {breedDetail[0]?.stranger_friendly && (
+                  <BreedCharacteristics
+                    title='Stranger Friendly'
+                    value={breedDetail[0]?.stranger_friendly}
+                  />
+                )}
+                {breedDetail[0]?.vocalisation && (
+                  <BreedCharacteristics
+                    title='Vocalisation'
+                    value={breedDetail[0]?.vocalisation}
+                  />
+                )}
+                {breedDetail[0]?.suppressed_tail && (
+                  <BreedCharacteristics
+                    title='Suppressed Tail'
+                    value={breedDetail[0]?.suppressed_tail}
+                  />
+                )}
+                {breedDetail[0]?.short_legs && (
+                  <BreedCharacteristics
+                    title='Short Legs'
+                    value={breedDetail[0]?.short_legs}
+                  />
+                )}
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <Spinner />
+        <PageNotFound />
       )}
     </>
   );

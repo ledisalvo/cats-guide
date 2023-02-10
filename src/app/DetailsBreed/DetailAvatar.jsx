@@ -2,8 +2,6 @@ import React from 'react';
 import catProfile from '../../content/images/cat-profile.png';
 
 const DetailAvatar = ({ breedDetail }) => {
-  console.log(breedDetail);
-  //const breedDetail = useSelector((state) => state.cats.breedDetails);
   return (
     <>
       <div

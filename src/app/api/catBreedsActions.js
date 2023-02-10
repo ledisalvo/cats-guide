@@ -40,7 +40,6 @@ export function getRandomImage() {
       }
       dispatch(asyncActionFinish());
     } catch (error) {
-      console.log('error: ' + error);
       dispatch(asyncActionError(error));
     }
   };
@@ -59,7 +58,6 @@ export function getBreedDetails(name) {
       }
       dispatch(asyncActionFinish());
     } catch (error) {
-      console.log('error: ' + error);
       dispatch(asyncActionError(error));
     }
   };

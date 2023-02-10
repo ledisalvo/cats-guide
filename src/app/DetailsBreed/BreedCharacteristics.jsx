@@ -5,8 +5,8 @@ const BreedCharacteristics = ({ title, value }) => {
     <>
       <div className='progress-text'>
         <div className='row'>
-          <div className='col-10'>{title}</div>
-          <div className='col-2 text-right'>{value}</div>
+          <div className='col-11'>{title}</div>
+          <div className='col-1 text-right'>{value}</div>
         </div>
       </div>
       <div className='custom-progress progress'>
@@ -17,8 +17,9 @@ const BreedCharacteristics = ({ title, value }) => {
           aria-valuemax='5'
           style={{
             width: (value * 100) / 5 + '%',
+            backgroundColor: '#4183c4',
           }}
-          className='animated custom-bar progress-bar slideInLeft bg-yellow'
+          className='animated custom-bar progress-bar slideInLeft'
         ></div>
       </div>
     </>
