@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/cats-guide/static/css/main.b8a45aea.chunk.css",
+    "main.js": "/cats-guide/static/js/main.e7829052.chunk.js",
+    "main.js.map": "/cats-guide/static/js/main.e7829052.chunk.js.map",
+    "runtime-main.js": "/cats-guide/static/js/runtime-main.6ff5da0a.js",
+    "runtime-main.js.map": "/cats-guide/static/js/runtime-main.6ff5da0a.js.map",
+    "static/css/2.16a524e1.chunk.css": "/cats-guide/static/css/2.16a524e1.chunk.css",
+    "static/js/2.03af39d6.chunk.js": "/cats-guide/static/js/2.03af39d6.chunk.js",
+    "static/js/2.03af39d6.chunk.js.map": "/cats-guide/static/js/2.03af39d6.chunk.js.map",
+    "index.html": "/cats-guide/index.html",
+    "static/css/2.16a524e1.chunk.css.map": "/cats-guide/static/css/2.16a524e1.chunk.css.map",
+    "static/css/main.b8a45aea.chunk.css.map": "/cats-guide/static/css/main.b8a45aea.chunk.css.map",
+    "static/js/2.03af39d6.chunk.js.LICENSE.txt": "/cats-guide/static/js/2.03af39d6.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/cats-guide/static/media/outline-icons.ddae9b1b.woff",
+    "static/media/cat-profile.ae4a5108.png": "/cats-guide/static/media/cat-profile.ae4a5108.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ff5da0a.js",
+    "static/css/2.16a524e1.chunk.css",
+    "static/js/2.03af39d6.chunk.js",
+    "static/css/main.b8a45aea.chunk.css",
+    "static/js/main.e7829052.chunk.js"
+  ]
+}
