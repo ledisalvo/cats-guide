@@ -20,9 +20,9 @@ const App = () => {
       <main>
         <Routes>
           <Route path='/' element={<CatBreeds />} />
-          <Route path='/detail/:name' element={<DetailsBreed />} />
-          <Route path='/apidoc' element={<ApiDocumentation />} />
-          <Route path='/404' element={<PageNotFound />} />
+          <Route path='detail/:name' element={<DetailsBreed />} />
+          <Route path='apidoc' element={<ApiDocumentation />} />
+          <Route path='404' element={<PageNotFound />} />
         </Routes>
       </main>
       <footer>
