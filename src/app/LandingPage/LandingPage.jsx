@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './LandingPage.css';
 import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
-import { getRandomImage } from '../api/catBreedsActions';
+import { getDailyCat } from '../api/catBreedsActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const LandingPage = () => {
@@ -10,8 +10,8 @@ const LandingPage = () => {
   const cat = useSelector((state) => state.cats.randomCat);
 
   useEffect(() => {
-    dispatch(getRandomImage());
-  }, []);
+    dispatch(getDailyCat());
+  }, [dispatch]);
 
   return (
     <div className='root'>
