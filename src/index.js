@@ -13,7 +13,7 @@ const store = configStore();
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
+      <BrowserRouter basename="/cats-guide">
         <Provider store={store}>
           <Routes>
             <Route path='/' element={<LandingPage />} />
