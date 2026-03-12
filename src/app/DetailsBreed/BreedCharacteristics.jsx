@@ -2,27 +2,22 @@ import React from 'react';
 
 const BreedCharacteristics = ({ title, value }) => {
   return (
-    <>
-      <div className='progress-text'>
-        <div className='row'>
-          <div className='col-11'>{title}</div>
-          <div className='col-1 text-right'>{value}</div>
-        </div>
+    <div className="mb-4">
+      <div className="flex justify-between items-center mb-1">
+        <span className="font-body text-xs text-muted">{title}</span>
+        <span className="font-body text-xs font-semibold text-foreground">{value}/5</span>
       </div>
-      <div className='custom-progress progress'>
+      <div className="w-full h-1.5 bg-border rounded-full overflow-hidden">
         <div
-          role='progressbar'
+          className="h-full bg-amber rounded-full"
+          style={{ width: `${(value / 5) * 100}%` }}
+          role="progressbar"
           aria-valuenow={value}
-          aria-valuemin='0'
-          aria-valuemax='5'
-          style={{
-            width: (value * 100) / 5 + '%',
-            backgroundColor: '#4183c4',
-          }}
-          className='animated custom-bar progress-bar slideInLeft'
-        ></div>
+          aria-valuemin={0}
+          aria-valuemax={5}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

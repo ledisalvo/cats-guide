@@ -1,28 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './PageNotFound.css';
 
 const PageNotFound = () => {
   return (
-    <div className='page-404'>
-      <div className='outer'>
-        <div className='middle'>
-          <div className='inner'>
-            <div className='inner-circle'>
-              <i className='fa fa-home'></i>
-              <span>404</span>
-            </div>
-            <span className='inner-detail'>
-              <span className='inner-status'>Oops! You're lost</span>
-              We can not find the page you're looking for.
-              <div>
-                <Link to='/App' className='btn btn-info mtl mt-2'>
-                  <i className='fa fa-home'></i>&nbsp; Return home
-                </Link>
-              </div>
-            </span>
-          </div>
-        </div>
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="text-center">
+        <p className="font-heading text-8xl font-bold text-border">404</p>
+        <h2 className="font-heading text-2xl font-bold text-foreground mt-4 mb-2">
+          Página no encontrada
+        </h2>
+        <p className="font-body text-sm text-muted mb-6">
+          No pudimos encontrar lo que estás buscando.
+        </p>
+        <Link
+          to="/App/"
+          className="inline-flex items-center gap-2 bg-surface border border-border text-foreground font-body text-sm px-4 py-2 rounded-xl hover:text-amber transition-colors no-underline"
+        >
+          ← Volver al inicio
+        </Link>
       </div>
     </div>
   );

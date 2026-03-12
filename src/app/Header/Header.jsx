@@ -1,44 +1,42 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './Header.css';
-
-const activeLinks = ({ isActive }) =>
-  isActive
-    ? {
-        color: '#fff',
-        background: '#bcbcbc',
-      }
-    : { color: '#545e6f', background: '#f0f0f0' };
 
 export default function Header() {
   return (
-    <div className='container'>
-      <header className='d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom'>
-        <Link
-          to='/'
-          className='d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none'
-        >
-          <span className='title'>Cat's catalog breeds</span>
-        </Link>
-
-        <ul className='nav nav-pills link'>
-          <li className='nav-item vertical-centered-li'>
-            <NavLink style={activeLinks} to='/'>
-              Get a random cat
-            </NavLink>
-          </li>
-          <li className='nav-item vertical-centered-li'>
-            <NavLink style={activeLinks} to='/App/'>
-              List of cat breeds
-            </NavLink>
-          </li>
-          <li className='nav-item vertical-centered-li'>
-            <NavLink style={activeLinks} to='apidoc'>
-              Api Documentation
-            </NavLink>
-          </li>
-        </ul>
-      </header>
-    </div>
+    <nav className="bg-surface border-b border-border px-6 py-3 flex items-center justify-between">
+      <Link to="/" className="flex items-center gap-2 no-underline">
+        <span className="text-lg">🐾</span>
+        <span className="font-heading text-xs font-bold tracking-widest text-muted uppercase">
+          Cats Guide
+        </span>
+      </Link>
+      <ul className="flex items-center gap-1 list-none m-0 p-0">
+        <li>
+          <NavLink
+            to="/App/"
+            end
+            className={({ isActive }) =>
+              `font-body text-sm px-3 py-1.5 rounded-lg transition-colors no-underline ${
+                isActive ? 'text-amber' : 'text-muted hover:text-foreground'
+              }`
+            }
+          >
+            Razas
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/App/apidoc"
+            className={({ isActive }) =>
+              `font-body text-sm px-3 py-1.5 rounded-lg transition-colors no-underline ${
+                isActive ? 'text-mint' : 'text-muted hover:text-foreground'
+              }`
+            }
+          >
+            API Docs
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
   );
 }

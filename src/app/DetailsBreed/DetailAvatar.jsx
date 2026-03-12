@@ -2,39 +2,27 @@ import React from 'react';
 import catProfile from '../../content/images/cat-profile.png';
 
 const DetailAvatar = ({ breedDetail }) => {
+  const hasImage = typeof breedDetail[0].image !== 'undefined';
+  const imgSrc = hasImage ? breedDetail[0].image.url : catProfile;
+
   return (
-    <>
-      <div
-        style={{
-          textAlign: 'center',
-          backgroundColor: '#f7f7f7',
-          paddingTop: '10px',
-          paddingBottom: '10px',
-        }}
-      >
-        {typeof breedDetail[0].image !== 'undefined' ? (
-          <img
-            className='card-img-top card-photo-size'
-            src={breedDetail[0].image.url}
-            alt={breedDetail[0].description}
-          />
-        ) : (
-          <img
-            className='card-img-top card-photo-size'
-            src={catProfile}
-            alt='error'
-          />
-        )}
+    <div className="bg-surface border border-border rounded-2xl overflow-hidden">
+      <div className="w-full h-56 overflow-hidden">
+        <img
+          className="w-full h-full object-cover"
+          src={imgSrc}
+          alt={breedDetail[0].description}
+        />
       </div>
-      <div className='bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center'>
-        <h4 className='margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600'>
+      <div className="p-4 text-center border-t border-border">
+        <h4 className="font-heading text-lg font-bold text-foreground mb-1">
           {breedDetail[0].name}
         </h4>
-        <p className='sm-width-95 sm-margin-auto'>
+        <p className="font-body text-xs text-muted leading-relaxed">
           {breedDetail[0].temperament}
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
