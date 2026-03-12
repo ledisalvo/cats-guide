@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import PageNotFound from '../PageNotFound/PageNotFound';
 import FilterCatsByName from './FIlterCatsByName';
 import CatBreedsList from './CatBreedsList';
@@ -29,9 +28,15 @@ export default function CatBreeds() {
   if (loading) return <LoadingModal />;
 
   return (
-    <div className='container'>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <h1 className="font-heading text-2xl font-bold text-foreground mb-2">Razas de gatos</h1>
       <FilterCatsByName onChange={handleNameFilter} />
-      {filteredCatBreeds && <h2>Found {filteredCatBreeds.length} cats</h2>}
+      {filteredCatBreeds && (
+        <p className="font-body text-xs text-muted mb-4">
+          {filteredCatBreeds.length} raza{filteredCatBreeds.length !== 1 ? 's' : ''} encontrada
+          {filteredCatBreeds.length !== 1 ? 's' : ''}
+        </p>
+      )}
       <CatBreedsList filteredCatBreeds={filteredCatBreeds} />
     </div>
   );

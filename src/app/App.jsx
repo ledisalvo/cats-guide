@@ -8,7 +8,6 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import PageNotFound from './PageNotFound/PageNotFound';
 import ModalManager from './common/modals/ModalManager';
-import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
   return (

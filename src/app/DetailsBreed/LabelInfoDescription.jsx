@@ -1,25 +1,24 @@
 import React from 'react';
 
-const LabelInfoDescripcion = ({
-  icon,
-  label,
-  linkDescription,
-  description,
-}) => {
+const LabelInfoDescripcion = ({ label, linkDescription, description }) => {
   return (
-    <div className='row'>
-      <div className='col-md-5 col-5'>
-        <i className={icon}></i>
+    <div className="flex items-start gap-3 py-2.5 border-b border-border last:border-0">
+      <span className="font-body text-xs font-semibold text-muted min-w-[120px] shrink-0">
+        {label}
+      </span>
+      <div className="font-body text-xs text-foreground flex-1">
         {linkDescription?.length > 0 ? (
-          <a target='_blank' rel='noreferrer' href={linkDescription}>
-            <strong style={{ marginLeft: '10px' }}>{label}</strong>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={linkDescription}
+            className="text-amber hover:underline no-underline"
+          >
+            Ver enlace →
           </a>
         ) : (
-          <strong style={{ marginLeft: '10px' }}>{label}</strong>
+          <span>{description}</span>
         )}
-      </div>
-      <div className='col-md-7 col-7'>
-        <p>{description}</p>
       </div>
     </div>
   );

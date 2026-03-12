@@ -1,14 +1,36 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import './DetailsBreed.css';
-import Spinner from '../Spinner/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBreedDetails } from '../api/catBreedsActions';
 import LabelInfoDescripcion from './LabelInfoDescription';
 import DetailAvatar from './DetailAvatar';
 import BreedCharacteristics from './BreedCharacteristics';
 import LoadingModal from '../common/modals/Loading/LoadingModal';
+
+const CHARACTERISTICS = [
+  { key: 'adaptability', label: 'Adaptabilidad' },
+  { key: 'affection_level', label: 'Nivel de afecto' },
+  { key: 'child_friendly', label: 'Amigable con niños' },
+  { key: 'dog_friendly', label: 'Amigable con perros' },
+  { key: 'energy_level', label: 'Nivel de energía' },
+  { key: 'grooming', label: 'Aseo' },
+  { key: 'health_issues', label: 'Problemas de salud' },
+  { key: 'hypoallergenic', label: 'Hipoalergénico' },
+  { key: 'intelligence', label: 'Inteligencia' },
+  { key: 'shedding_level', label: 'Nivel de muda' },
+  { key: 'social_needs', label: 'Necesidades sociales' },
+  { key: 'stranger_friendly', label: 'Amigable con extraños' },
+  { key: 'vocalisation', label: 'Vocalización' },
+  { key: 'experimental', label: 'Experimental' },
+  { key: 'hairless', label: 'Sin pelo' },
+  { key: 'natural', label: 'Natural' },
+  { key: 'rare', label: 'Raro' },
+  { key: 'rex', label: 'Rex' },
+  { key: 'suppressed_tail', label: 'Cola suprimida' },
+  { key: 'short_legs', label: 'Patas cortas' },
+  { key: 'Indoor', label: 'Interior' },
+];
 
 export default function DetailsBreed() {
   const dispatch = useDispatch();
@@ -22,210 +44,48 @@ export default function DetailsBreed() {
 
   if (error) return <PageNotFound />;
   if (loading) return <LoadingModal />;
+  if (!breedDetail || breedDetail.length === 0) return <PageNotFound />;
+
+  const breed = breedDetail[0];
 
   return (
-    <>
-      {breedDetail && breedDetail.length > 0 ? (
-        <div className='container'>
-          <div className='row'>
-            <div className='col-4'>
-              <DetailAvatar breedDetail={breedDetail} />
-              <p style={{ marginTop: '20px' }}>{breedDetail[0].description}</p>
-              <div style={{ marginTop: '20px' }}>
-                <ul className='list-style9 no-margin'>
-                  <li>
-                    <LabelInfoDescripcion
-                      icon='fas fa-graduation-cap'
-                      label='Origin:'
-                      description={breedDetail[0].country_code}
-                    />
-                  </li>
-                  <li>
-                    <LabelInfoDescripcion
-                      icon='far fa-gem'
-                      label='Life Span:'
-                      description={breedDetail[0].life_span + ' years'}
-                    />
-                  </li>
-                  <li>
-                    <LabelInfoDescripcion
-                      icon='far fa-file'
-                      label='Weight:'
-                      description={breedDetail[0].weight.metric + ' Kg'}
-                    />
-                  </li>
-                  {breedDetail[0].vcahospitals_url && (
-                    <li>
-                      <LabelInfoDescripcion
-                        icon='fas fa-map-marker-alt'
-                        label='VCA Hospitals Info:'
-                        linkDescription={breedDetail[0].vcahospitals_url}
-                      />
-                    </li>
-                  )}
-                  {breedDetail[0].vetstreet_url && (
-                    <li>
-                      <LabelInfoDescripcion
-                        icon='fas fa-map-marker-alt'
-                        label='VetStreet Info:'
-                        linkDescription={breedDetail[0].vetstreet_url}
-                      />
-                    </li>
-                  )}
-                  {breedDetail[0].wikipedia_url && (
-                    <li>
-                      <LabelInfoDescripcion
-                        icon='fas fa-map-marker-alt'
-                        label='Wikipedia Info:'
-                        linkDescription={breedDetail[0].wikipedia_url}
-                      />
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </div>
-            <div className='col-8'>
-              <h5 style={{ marginTop: '20px' }}>Characteristics</h5>
-              <div className='sm-no-margin'>
-                {breedDetail[0]?.adaptability && (
-                  <BreedCharacteristics
-                    title='Adaptability'
-                    value={breedDetail[0]?.adaptability}
-                  />
-                )}
-                {breedDetail[0]?.affection_level && (
-                  <BreedCharacteristics
-                    title='Affection Level'
-                    value={breedDetail[0]?.affection_level}
-                  />
-                )}
-                {breedDetail[0]?.child_friendly && (
-                  <BreedCharacteristics
-                    title='Child Friendly'
-                    value={breedDetail[0]?.child_friendly}
-                  />
-                )}
-                {breedDetail[0]?.dog_friendly && (
-                  <BreedCharacteristics
-                    title='Dog Friendly'
-                    value={breedDetail[0]?.dog_friendly}
-                  />
-                )}
-                {breedDetail[0]?.energy_level && (
-                  <BreedCharacteristics
-                    title='Energy Level'
-                    value={breedDetail[0]?.energy_level}
-                  />
-                )}
-                {breedDetail[0]?.experimental && (
-                  <BreedCharacteristics
-                    title='Experimental'
-                    value={breedDetail[0]?.experimental}
-                  />
-                )}
-                {breedDetail[0]?.grooming && (
-                  <BreedCharacteristics
-                    title='Grooming'
-                    value={breedDetail[0]?.grooming}
-                  />
-                )}
-                {breedDetail[0]?.hairless && (
-                  <BreedCharacteristics
-                    title='Hairless'
-                    value={breedDetail[0]?.hairless}
-                  />
-                )}
-                {breedDetail[0]?.health_issues && (
-                  <BreedCharacteristics
-                    title='Health Issues'
-                    value={breedDetail[0]?.health_issues}
-                  />
-                )}
-                {breedDetail[0]?.hypoallergenic && (
-                  <BreedCharacteristics
-                    title='Hypoallergenic'
-                    value={breedDetail[0]?.hypoallergenic}
-                  />
-                )}
-                {breedDetail[0]?.Indoor && (
-                  <BreedCharacteristics
-                    title='Indoor'
-                    value={breedDetail[0]?.Indoor}
-                  />
-                )}
-                {breedDetail[0]?.intelligence && (
-                  <BreedCharacteristics
-                    title='Intelligence'
-                    value={breedDetail[0]?.intelligence}
-                  />
-                )}
-                {breedDetail[0]?.natural && (
-                  <BreedCharacteristics
-                    title='Natural'
-                    value={breedDetail[0]?.natural}
-                  />
-                )}
-                {breedDetail[0]?.rare && (
-                  <BreedCharacteristics
-                    title='Rare'
-                    value={breedDetail[0]?.rare}
-                  />
-                )}
-                {breedDetail[0]?.rex && (
-                  <BreedCharacteristics
-                    title='Rex'
-                    value={breedDetail[0]?.rex}
-                  />
-                )}
-                {breedDetail[0]?.shedding_level && (
-                  <BreedCharacteristics
-                    title='Shedding Level'
-                    value={breedDetail[0]?.shedding_level}
-                  />
-                )}
-                {breedDetail[0]?.social_needs && (
-                  <BreedCharacteristics
-                    title='Social Needs'
-                    value={breedDetail[0]?.social_needs}
-                  />
-                )}
-                {breedDetail[0]?.suppressed_tail && (
-                  <BreedCharacteristics
-                    title='Suppressed tail'
-                    value={breedDetail[0]?.suppressed_tail}
-                  />
-                )}
-                {breedDetail[0]?.stranger_friendly && (
-                  <BreedCharacteristics
-                    title='Stranger Friendly'
-                    value={breedDetail[0]?.stranger_friendly}
-                  />
-                )}
-                {breedDetail[0]?.vocalisation && (
-                  <BreedCharacteristics
-                    title='Vocalisation'
-                    value={breedDetail[0]?.vocalisation}
-                  />
-                )}
-                {breedDetail[0]?.suppressed_tail && (
-                  <BreedCharacteristics
-                    title='Suppressed Tail'
-                    value={breedDetail[0]?.suppressed_tail}
-                  />
-                )}
-                {breedDetail[0]?.short_legs && (
-                  <BreedCharacteristics
-                    title='Short Legs'
-                    value={breedDetail[0]?.short_legs}
-                  />
-                )}
-              </div>
-            </div>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr] gap-6">
+        {/* Left column */}
+        <div className="flex flex-col gap-4">
+          <DetailAvatar breedDetail={breedDetail} />
+          <div className="bg-surface border border-border rounded-2xl p-4">
+            <p className="font-body text-sm text-muted leading-relaxed mb-4">
+              {breed.description}
+            </p>
+            <LabelInfoDescripcion label="Origen" description={breed.country_code} />
+            <LabelInfoDescripcion
+              label="Esperanza de vida"
+              description={`${breed.life_span} años`}
+            />
+            <LabelInfoDescripcion label="Peso" description={`${breed.weight.metric} Kg`} />
+            {breed.vcahospitals_url && (
+              <LabelInfoDescripcion label="VCA Hospitals" linkDescription={breed.vcahospitals_url} />
+            )}
+            {breed.vetstreet_url && (
+              <LabelInfoDescripcion label="VetStreet" linkDescription={breed.vetstreet_url} />
+            )}
+            {breed.wikipedia_url && (
+              <LabelInfoDescripcion label="Wikipedia" linkDescription={breed.wikipedia_url} />
+            )}
           </div>
         </div>
-      ) : (
-        <PageNotFound />
-      )}
-    </>
+
+        {/* Right column */}
+        <div className="bg-surface border border-border rounded-2xl p-6">
+          <h5 className="font-heading text-base font-bold text-foreground mb-6">
+            Características
+          </h5>
+          {CHARACTERISTICS.map(({ key, label }) =>
+            breed[key] ? <BreedCharacteristics key={key} title={label} value={breed[key]} /> : null
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
