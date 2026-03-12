@@ -10,7 +10,8 @@ module.exports = {
         background: '#0F0F14',
         surface:    '#1A1A24',
         border:     '#2E2E3E',
-        text:       '#F2F2F7',
+        foreground: '#F2F2F7',   // shadcn/ui convention alias
+        text:       '#F2F2F7',   // kept for backwards compat
         muted:      '#8B8B9E',
         amber:      '#F59E0B',
         coral:      '#FF6B6B',
