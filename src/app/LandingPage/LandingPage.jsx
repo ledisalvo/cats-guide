@@ -4,6 +4,7 @@ import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
 import { getRandomImage } from '../api/catBreedsActions';
 import { useDispatch, useSelector } from 'react-redux';
+import TailwindSetupCheck from '../common/TailwindSetupCheck';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const LandingPage = () => {
       <Link to='/App/' className='btn btn-outline-dark'>
         Explore cat's breeds
       </Link>
+      <TailwindSetupCheck className="mt-4" />
     </div>
   );
 };
