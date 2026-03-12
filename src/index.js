@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import ErrorBoundary from './ErrorBoundary';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -10,7 +11,8 @@ import configStore from './app/store/configStore';
 
 const store = configStore();
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <BrowserRouter basename="/cats-guide">
@@ -22,6 +24,5 @@ ReactDOM.render(
         </Provider>
       </BrowserRouter>
     </ErrorBoundary>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
