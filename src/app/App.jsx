@@ -10,6 +10,7 @@ import PageNotFound from './PageNotFound/PageNotFound';
 import ModalManager from './common/modals/ModalManager';
 import GameHub from './Games/GameHub';
 import DifficultySelector from './Games/DifficultySelector';
+import QuizGame from './Games/Quiz/QuizGame';
 const App = () => {
   return (
     <div className='App'>
@@ -25,7 +26,8 @@ const App = () => {
           <Route path='404' element={<PageNotFound />} />
           <Route path='juegos' element={<GameHub />} />
           <Route path='juegos/:game' element={<DifficultySelector />} />
-          <Route path='juegos/:game/:difficulty' element={<PageNotFound />} />
+          <Route path='juegos/quiz/:difficulty' element={<QuizGame />} />
+          <Route path='juegos/memory/:difficulty' element={<PageNotFound />} />
         </Routes>
       </main>
       <footer>
