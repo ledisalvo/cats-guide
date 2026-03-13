@@ -8,8 +8,8 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import PageNotFound from './PageNotFound/PageNotFound';
 import ModalManager from './common/modals/ModalManager';
-import 'semantic-ui-css/semantic.min.css';
-
+import GameHub from './Games/GameHub';
+import DifficultySelector from './Games/DifficultySelector';
 const App = () => {
   return (
     <div className='App'>
@@ -23,6 +23,9 @@ const App = () => {
           <Route path='detail/:name' element={<DetailsBreed />} />
           <Route path='apidoc' element={<ApiDocumentation />} />
           <Route path='404' element={<PageNotFound />} />
+          <Route path='juegos' element={<GameHub />} />
+          <Route path='juegos/:game' element={<DifficultySelector />} />
+          <Route path='juegos/:game/:difficulty' element={<PageNotFound />} />
         </Routes>
       </main>
       <footer>
